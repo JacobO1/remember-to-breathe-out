@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       home: const HomeScreen(),
       routes: {
         // When navigating to the "/second" route, build the SecondScreen widget.
-        '/settings': (context) => const SettingsScreen(),
+        // '/settings': (context) => const SettingsScreen(),
       },
     );
   }
@@ -57,20 +57,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 247, 110, 68),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.settings,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/settings');
-            },
-          )
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: const Color.fromARGB(255, 247, 110, 68),
+      //   actions: <Widget>[
+      //     IconButton(
+      //       icon: const Icon(
+      //         Icons.settings,
+      //         color: Colors.white,
+      //       ),
+      //       onPressed: () {
+      //         Navigator.pushNamed(context, '/settings');
+      //       },
+      //     )
+      //   ],
+      // ),
       body: Stack(
         children: [
           Container(
@@ -101,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
           FutureBuilder<bool>(
             future: getButton(),
             builder: (context, snapshot) {
+              print(snapshot.hasData);
               if (!snapshot.data!) {
                 return Column(
                   children: [
@@ -125,6 +126,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               } else {
                 return const SizedBox();
+                // Column(
+                //   children: [
+                // Expanded(
+                //   child: Align(
+                //         alignment: FractionalOffset.bottomCenter,
+                //         child: ElevatedButton(
+                //           style: ElevatedButton.styleFrom(
+                //             padding: const EdgeInsets.only(left: 120, right: 120, top: 6, bottom: 100),
+                //           ),
+                //           onPressed: () async {
+                //             NotificationController.test1();
+                //           },
+                //           child: const Text('TEST!!!')),
+                //         ),
+                //   ),
+                //   ],
+                // );
               }
             },
           ),
@@ -136,65 +154,4 @@ class _HomeScreenState extends State<HomeScreen> {
 
 Future<bool> getButton() async {
   return await NotificationController.notificationsAllowed();
-}
-
-
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
-
-  @override
-  
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'Push the buttons below to create new notifications',
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(width: 20),
-            FloatingActionButton(
-              heroTag: '1',
-              onPressed: () => NotificationController.createNewNotification(),
-              tooltip: 'Create New notification',
-              child: const Icon(Icons.outgoing_mail),
-            ),
-            const SizedBox(width: 10),
-            FloatingActionButton(
-              heroTag: '2',
-              onPressed: () => NotificationController.scheduleNewNotification(),
-              tooltip: 'Schedule New notification',
-              child: const Icon(Icons.access_time_outlined),
-            ),
-            const SizedBox(width: 10),
-            FloatingActionButton(
-              heroTag: '3',
-              onPressed: () => NotificationController.resetBadgeCounter(),
-              tooltip: 'Reset badge counter',
-              child: const Icon(Icons.exposure_zero),
-            ),
-            const SizedBox(width: 10),
-            FloatingActionButton(
-              heroTag: '4',
-              onPressed: () => NotificationController.cancelNotifications(),
-              tooltip: 'Cancel all notifications',
-              child: const Icon(Icons.delete_forever),
-            ),
-          ],
-        ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
 }

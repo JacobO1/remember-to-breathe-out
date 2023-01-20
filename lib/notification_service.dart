@@ -137,6 +137,25 @@ class NotificationController {
   ///     NOTIFICATION CREATION METHODS
   ///  *********************************************
   ///
+  static Future<void> test1() async {
+    await AwesomeNotifications().createNotification(
+    content: NotificationContent(
+      id: -1,
+      channelKey: 'alerts',
+      title: 'Remember to breathe out',
+      body: '',
+      // bigPicture: 'asset://assets/background',
+      // largeIcon: 'asset://assets/background'
+      bigPicture: 'asset://assets/notification.jpeg',
+      notificationLayout: NotificationLayout.BigPicture,
+      ),
+      schedule: NotificationInterval(
+      interval: 60,
+      timeZone: AwesomeNotifications.localTimeZoneIdentifier,
+      repeats: true));
+  }
+
+
   static Future<void> createNewNotification() async {
     bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
     // if (!isAllowed) isAllowed = await AwesomeNotifications().requestPermissionToSendNotifications();
@@ -146,13 +165,13 @@ class NotificationController {
     content: NotificationContent(
         id: -1,
         channelKey: 'alerts',
-        title: 'Remember to breathe out',
-        // body: '',
-        notificationLayout: NotificationLayout.BigPicture,
+        title: 'test3',
+        body: 'test4',
         // bigPicture: 'asset://assets/background',
         // largeIcon: 'asset://assets/background'
-        bigPicture: 'https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png',
-        largeIcon: 'https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png',
+        bigPicture: 'asset://assets/not.png',
+        largeIcon: 'asset://assets/not.png',
+        notificationLayout: NotificationLayout.BigPicture,
         ),
     schedule: NotificationInterval(
       interval: 60,
@@ -168,9 +187,9 @@ class NotificationController {
           notificationLayout: NotificationLayout.BigPicture,
           bigPicture: 'asset://assets/notification'),
       schedule: NotificationCalendar.fromDate(
-        date: DateTime.now().add(const Duration(seconds: 41820)), repeats: true));
+        date: DateTime.now().add(const Duration(seconds: 49020)), repeats: true));
       // schedule: NotificationInterval(interval: 41820, timeZone: localTimeZone, repeats: true));
-      // 11 hours 37 minutes
+      // 13 hours 37 minutes
   
   await AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -194,9 +213,9 @@ class NotificationController {
           notificationLayout: NotificationLayout.BigPicture,
           bigPicture: 'asset://assets/notification'),
       schedule: NotificationCalendar.fromDate(
-        date: DateTime.now().add(const Duration(seconds: 107460)), repeats: true));
+        date: DateTime.now().add(const Duration(seconds: 107220)), repeats: true));
       // schedule: NotificationInterval(interval: 107460, timeZone: localTimeZone, repeats: true));
-      // 29 hours 51 minutes
+      // 29 hours 47 minutes
 
     // await AwesomeNotifications().createNotification(
     //     content: NotificationContent(
