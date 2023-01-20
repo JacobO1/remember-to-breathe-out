@@ -101,7 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
           FutureBuilder<bool>(
             future: getButton(),
             builder: (context, snapshot) {
-              print(snapshot.hasData);
               if (!snapshot.data!) {
                 return Column(
                   children: [
@@ -126,23 +125,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               } else {
                 return const SizedBox();
-                // Column(
-                //   children: [
-                // Expanded(
-                //   child: Align(
-                //         alignment: FractionalOffset.bottomCenter,
-                //         child: ElevatedButton(
-                //           style: ElevatedButton.styleFrom(
-                //             padding: const EdgeInsets.only(left: 120, right: 120, top: 6, bottom: 100),
-                //           ),
-                //           onPressed: () async {
-                //             NotificationController.test1();
-                //           },
-                //           child: const Text('TEST!!!')),
-                //         ),
-                //   ),
-                //   ],
-                // );
               }
             },
           ),
